@@ -30,25 +30,32 @@ namespace TestWell.Test.Component.Environment
         [Fact]
         public void CanNewUpTestingEnvironmentUsingChaining()
         {
-            var mongoPath = PlatformServices.Default.Application.ApplicationBasePath;
-            var hasTestEnvironmentsFolder = false;
-            while (!hasTestEnvironmentsFolder)
-            {
-                mongoPath = Path.GetFullPath(Path.Combine(mongoPath, @"../"));
-                var dirs = Directory.GetDirectories(mongoPath);
+            var mongoPath = System.Environment.GetEnvironmentVariable("MONGO_PATH");
 
-                foreach (var dir in dirs)
+            if (string.IsNullOrEmpty(mongoPath))
+            {
+                mongoPath = PlatformServices.Default.Application.ApplicationBasePath;
+                var hasTestEnvironmentsFolder = false;
+                while (!hasTestEnvironmentsFolder)
                 {
-                    if (dir.Contains("TestWell.Test.Resource.Environments"))
+                    mongoPath = Path.GetFullPath(Path.Combine(mongoPath, @"../"));
+                    var dirs = Directory.GetDirectories(mongoPath);
+
+                    foreach (var dir in dirs)
                     {
-                        hasTestEnvironmentsFolder = true;
-                        break;
+                        if (dir.Contains("TestWell.Test.Resource.Environments"))
+                        {
+                            hasTestEnvironmentsFolder = true;
+                            break;
+                        }
                     }
                 }
+
+                mongoPath = Path.Combine(mongoPath, @"TestWell.Test.Resource.Environments/Mongo/bin/mongod.exe");
             }
 
             this.testEnvironment = new TestWellEnvironmentBuilder()
-                                        .AddMongo(Path.Combine(mongoPath, @"TestWell.Test.Resource.Environments/Mongo/bin/mongod.exe"))
+                                        .AddMongo(mongoPath)
                                         .AddSqlContext<TestDbContext>()
                                         .AddResourceWebService<TestWell.Test.Resource.Api.Startup>()
                                         .BuildEnvironment();
