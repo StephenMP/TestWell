@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Authors>Stephen Porter</Authors>
+    <Description>TestWell is a framework for spinning up environments for the purpose of local integration testing.</Description>
+    <Copyright>2017</Copyright>
+    <PackageLicenseUrl>https://github.com/StephenMP/TestWell/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/StephenMP/TestWell</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/StephenMP/TestWell</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>TESTING</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
