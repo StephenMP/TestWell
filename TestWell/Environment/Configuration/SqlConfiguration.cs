@@ -33,7 +33,7 @@ namespace TestWell.Environment.Configuration
         public void AddSqlContext<TDbContext>() where TDbContext : DbContext
         {
             var builder = new DbContextOptionsBuilder<TDbContext>()
-                                .UseInMemoryDatabase()
+                                .UseInMemoryDatabase(Guid.NewGuid().ToString("N"))
                                 .UseInternalServiceProvider(serviceProvider);
 
             this.sqlDbContextOptions.Add(typeof(TDbContext), builder.Options);

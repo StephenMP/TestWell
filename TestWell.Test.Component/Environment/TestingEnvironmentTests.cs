@@ -34,7 +34,7 @@ namespace TestWell.Test.Component.Environment
             var hasTestEnvironmentsFolder = false;
             while (!hasTestEnvironmentsFolder)
             {
-                mongoPath = Path.GetFullPath(Path.Combine(mongoPath, @"..\"));
+                mongoPath = Path.GetFullPath(Path.Combine(mongoPath, @"../"));
                 var dirs = Directory.GetDirectories(mongoPath);
 
                 foreach (var dir in dirs)
@@ -48,7 +48,7 @@ namespace TestWell.Test.Component.Environment
             }
 
             this.testEnvironment = new TestWellEnvironmentBuilder()
-                                        .AddMongo(Path.Combine(mongoPath, @"TestWell.Test.Resource.Environments\Mongo\bin\mongod.exe"))
+                                        .AddMongo(Path.Combine(mongoPath, @"TestWell.Test.Resource.Environments/Mongo/bin/mongod.exe"))
                                         .AddSqlContext<TestDbContext>()
                                         .AddResourceWebService<TestWell.Test.Resource.Api.Startup>()
                                         .BuildEnvironment();

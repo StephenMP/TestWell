@@ -47,7 +47,7 @@ namespace TestWell.Test.Component.Environment.Configuration
             var hasTestEnvironmentsFolder = false;
             while (!hasTestEnvironmentsFolder)
             {
-                mongoPath = Path.GetFullPath(Path.Combine(mongoPath, @"..\"));
+                mongoPath = Path.GetFullPath(Path.Combine(mongoPath, @"../"));
                 var dirs = Directory.GetDirectories(mongoPath);
 
                 foreach (var dir in dirs)
@@ -60,7 +60,7 @@ namespace TestWell.Test.Component.Environment.Configuration
                 }
             }
 
-            this.mongoConfiguration = new MongoConfiguration(Path.Combine(mongoPath, @"TestWell.Test.Resource.Environments\Mongo\bin\mongod.exe"));
+            this.mongoConfiguration = new MongoConfiguration(Path.Combine(mongoPath, @"TestWell.Test.Resource.Environments/Mongo/bin/mongod.exe"));
         }
 
         internal void GivenIHaveDataToImport()
