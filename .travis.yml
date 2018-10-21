@@ -7,10 +7,10 @@ install:
   - dotnet restore
 script:
   - dotnet build -c Release
-  - dotnet test -c Release --no-build TestWell.Tests/TestWell.Tests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:Exclude="[TestWell.Tests*]*"
-  - curl -s https://codecov.io/bash > codecov
-  - chmod +x codecov
-  - ./codecov -f ./TestWell.Tests/coverage.opencover.xml
+  # - dotnet test -c Release --no-build TestWell.Tests/TestWell.Tests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:Exclude="[TestWell.Tests*]*"
+  # - curl -s https://codecov.io/bash > codecov
+  # - chmod +x codecov
+  # - ./codecov -f ./TestWell.Tests/coverage.opencover.xml
 deploy:
   skip_cleanup: true
   provider: script
