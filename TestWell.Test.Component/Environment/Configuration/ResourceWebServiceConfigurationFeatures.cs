@@ -49,7 +49,7 @@ namespace TestWell.Test.Component.Environment.Configuration
             await this.steps.ThenICanVerifyICanUseWebServiceAsync();
         }
 
-        public void Dispose()
+        internal void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
